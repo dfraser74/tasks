@@ -1,0 +1,64 @@
+<!--
+@license
+Copyright (c) 2016 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="shared-styles.html">
+
+<link rel="import" href="../bower_components/app-storage/app-localstorage/app-localstorage-document.html">
+
+<dom-module id="tasks-view">
+  <template>
+    <style include="shared-styles">
+       :host {
+        display: block;
+
+        padding: 10px;
+      }
+    </style>
+
+    <template is="dom-repeat" items="{{tasks}}">
+      <div class="card">
+        <div class="circle">[[item.author]]</div>
+        <h1>[[item.name]]</h1>
+        <p>[[item.desc]]</p>
+      </div>
+    </template>
+
+    <app-localstorage-document key="tasks" data="{{tasks}}"></app-localstorage-document>
+  </template>
+
+  <script>
+    class TasksView extends Polymer.Element {
+      static get is() { return 'tasks-view'; }
+
+      static get properties() {
+        return {
+          tasks: {
+            type: Array,
+            value: () => [{
+              author: 'N',
+              name: 'task1',
+              desc: 'description of task1',
+              date: '2017-08-10',
+              time: '12:35',
+              estimation: '2h',
+              location: 'Turku',
+              status: 'created',
+              subtasks: [],
+              comments: []
+            }]
+          }
+        };
+      }
+    }
+
+    window.customElements.define(TasksView.is, TasksView);
+  </script>
+</dom-module>
