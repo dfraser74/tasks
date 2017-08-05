@@ -5,6 +5,7 @@
     "src/tasks-view.html",
     "src/settings-view.html",
     "src/about-view.html",
+    "src/new-task-view.html",
     "src/my-view404.html"
   ],
   "sources": [
