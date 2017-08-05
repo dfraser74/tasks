@@ -9,9 +9,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 -->
 
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="components/task-card.html">
 <link rel="import" href="shared-styles.html">
 
 <link rel="import" href="../bower_components/app-storage/app-localstorage/app-localstorage-document.html">
+<link rel="import" href="../bower_components/paper-fab/paper-fab.html">
 
 <dom-module id="tasks-view">
   <template>
@@ -21,16 +23,19 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         padding: 10px;
       }
+
+      .add-task {
+        position: fixed;
+        right: 10px;
+        bottom: 10px;
+      }
     </style>
 
     <template is="dom-repeat" items="{{tasks}}">
-      <div class="card">
-        <div class="circle">[[item.author]]</div>
-        <h1>[[item.name]]</h1>
-        <p>[[item.desc]]</p>
-      </div>
+      <task-card task="[[item]]"></task-card>
     </template>
 
+    <paper-fab label="+" class="add-task"></paper-fab>
     <app-localstorage-document key="tasks" data="{{tasks}}"></app-localstorage-document>
   </template>
 
@@ -46,6 +51,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
               author: 'N',
               name: 'task1',
               desc: 'description of task1',
+              date: '2017-08-10',
+              time: '12:35',
+              estimation: '2h',
+              location: 'Turku',
+              status: 'created',
+              subtasks: [],
+              comments: []
+            }, {
+              author: 'A',
+              name: 'task2',
+              desc: 'description of task2',
               date: '2017-08-10',
               time: '12:35',
               estimation: '2h',
