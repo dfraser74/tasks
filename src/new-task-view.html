@@ -1,0 +1,31 @@
+<!--
+    New task view
+-->
+
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="shared-styles.html">
+
+<dom-module id="new-task-view">
+    <template>
+        <style include="shared-styles">
+             :host {
+                display: block;
+
+                padding: 10px;
+            }
+        </style>
+
+        <h1>Create new task</h1>
+    </template>
+
+    <script>
+        class NewTaskView extends Polymer.Element {
+            static get is() { return 'new-task-view'; }
+            static get properties() {
+                return {}
+            } 
+        }
+
+        window.customElements.define(NewTaskView.is, NewTaskView);
+    </script>
+</dom-module>

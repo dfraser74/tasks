@@ -9,6 +9,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 -->
 
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../bower_components/app-route/app-location.html">
 <link rel="import" href="components/task-card.html">
 <link rel="import" href="shared-styles.html">
 
@@ -31,11 +32,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
     </style>
 
+    <app-location route="{{route}}"></app-location>
+
     <template is="dom-repeat" items="{{tasks}}">
       <task-card task="[[item]]"></task-card>
     </template>
 
-    <paper-fab label="+" class="add-task"></paper-fab>
+    <paper-fab label="+" class="add-task" on-tap="_newTask"></paper-fab>
     <app-localstorage-document key="tasks" data="{{tasks}}"></app-localstorage-document>
   </template>
 
@@ -72,6 +75,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             }]
           }
         };
+      }
+
+      _newTask() {
+        this.set('route.path', '/new-task');
       }
     }
 
