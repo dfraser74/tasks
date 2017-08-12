@@ -33,48 +33,26 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     </style>
 
     <app-location route="{{route}}"></app-location>
+    <app-localstorage-document key="tasks" data="{{tasks}}" id="storage"></app-localstorage-document>
 
     <template is="dom-repeat" items="{{tasks}}">
       <task-card task="[[item]]"></task-card>
     </template>
 
     <paper-fab label="+" class="add-task" on-tap="_newTask"></paper-fab>
-    <app-localstorage-document key="tasks" data="{{tasks}}"></app-localstorage-document>
   </template>
 
   <script>
     class TasksView extends Polymer.Element {
       static get is() { return 'tasks-view'; }
 
+      constructor() {
+        super();
+        this.tasks = [];
+      }
+
       static get properties() {
-        return {
-          tasks: {
-            type: Array,
-            value: () => [{
-              author: 'N',
-              name: 'task1',
-              desc: 'description of task1',
-              date: '2017-08-10',
-              time: '12:35',
-              estimation: '2h',
-              location: 'Turku',
-              status: 'created',
-              subtasks: [],
-              comments: []
-            }, {
-              author: 'A',
-              name: 'task2',
-              desc: 'description of task2',
-              date: '2017-08-10',
-              time: '12:35',
-              estimation: '2h',
-              location: 'Turku',
-              status: 'created',
-              subtasks: [],
-              comments: []
-            }]
-          }
-        };
+        return {};
       }
 
       _newTask() {
